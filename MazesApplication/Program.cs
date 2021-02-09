@@ -103,7 +103,7 @@ namespace MazesApplication
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
                 column++;
-                navigateMaze(maze, row, column + position, printPathResult);
+                navigateMaze(maze, row, column, printPathResult);
             }
 
             // Move Down 
@@ -111,7 +111,7 @@ namespace MazesApplication
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
                 row++;
-                navigateMaze(maze, row + position, column, printPathResult);
+                navigateMaze(maze, row, column, printPathResult);
             }
 
             // Move to the Left 
@@ -119,7 +119,7 @@ namespace MazesApplication
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
                 column--;
-                navigateMaze(maze, row, column - position, printPathResult);
+                navigateMaze(maze, row, column, printPathResult);
             }
 
             // Move Up
@@ -127,7 +127,7 @@ namespace MazesApplication
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
                 row--;
-                navigateMaze(maze, row - position, column, printPathResult);
+                navigateMaze(maze, row, column, printPathResult);
             }
 
             //return the current position to the original value
