@@ -73,7 +73,6 @@ namespace MazesApplication
         public static void navigateMaze(int[,] maze, int row, int column, string printPathResult)
         {
             int rowSize = maze.GetLength(0);
-            //int columnSize = maze.GetLength(1);
 
             /*
              * If we reached the end of the maze, 
