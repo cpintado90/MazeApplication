@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -38,15 +38,14 @@ namespace MazesApplication
             {
                 if (File.Exists(fileName))
                 {
-                    string fileInput = File.ReadAllText(fileName);
-                    int lineCount = File.ReadAllLines(fileName).Count();
+                    string[] fileInput = File.ReadAllLines(fileName);
                     int i = 0, j = 0;
 
-                    int rows = lineCount + 1;
-                    int cols = lineCount + 1;
-                    int[,] results = new int[rows, cols];
+                    int rows = fileInput.Count() + 1;
+                    int columns = fileInput.Count() + 1;
+                    int[,] results = new int[rows, columns];
 
-                    foreach (var row in fileInput.Split('\n'))
+                    foreach (var row in fileInput)
                     {
                         j = 0;
                         foreach (var col in row.Trim().Split(' '))
@@ -73,6 +72,7 @@ namespace MazesApplication
         public static void navigateMaze(int[,] maze, int row, int column, string printPathResult)
         {
             int rowSize = maze.GetLength(0);
+            //int columnSize = maze.GetLength(1);
 
             /*
              * If we reached the end of the maze, 
@@ -102,7 +102,7 @@ namespace MazesApplication
             if (column + position < maze.GetLength(1))
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
-                position++;
+                column++;
                 navigateMaze(maze, row, column + position, printPathResult);
             }
 
@@ -110,7 +110,7 @@ namespace MazesApplication
             if (row + position < maze.GetLength(0))
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
-                position++;
+                row++;
                 navigateMaze(maze, row + position, column, printPathResult);
             }
 
@@ -118,7 +118,7 @@ namespace MazesApplication
             if (column - position > 0)
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
-                position--;
+                column--;
                 navigateMaze(maze, row, column - position, printPathResult);
             }
 
@@ -126,7 +126,7 @@ namespace MazesApplication
             if (row - position > 0)
             {
                 printPathResult += printPath(row, column, printPathResult) + ",";
-                position--;
+                row--;
                 navigateMaze(maze, row - position, column, printPathResult);
             }
 
